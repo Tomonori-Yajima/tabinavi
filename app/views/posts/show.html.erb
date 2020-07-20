@@ -1,0 +1,13 @@
+<div class="d-flex align-items-center mt-4 mb-4">
+    <div class="ml-auto posts_button">
+        <%= link_to '投稿一覧', posts_path, class: "btn btn-lg btn-primary" %>
+        <%= link_to '編集', edit_post_path(@post), class: "btn btn-lg btn-primary" %>
+    </div>
+</div>
+
+<% if flash[:notice] %>
+    <div class="alert alert-primary"><%= flash[:notice] %></div>
+<% end %>
+
+
+<%= render @post %>

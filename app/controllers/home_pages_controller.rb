@@ -5,6 +5,4 @@ class HomePagesController < ApplicationController
   def login
   end
   
-  def search
-  end
 end

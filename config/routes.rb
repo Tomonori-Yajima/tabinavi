@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy'
   get '/search',  to:'home_pages#search'
   resources :users
+  resources :posts
 end

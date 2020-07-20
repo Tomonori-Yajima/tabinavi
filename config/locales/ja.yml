@@ -6,4 +6,7 @@ ja:
         email: メールアドレス
         password: パスワード
         password_confirmation: パスワード
-        
+      post:
+        name: 投稿場所
+        address: 住所
+        content: 投稿内容  

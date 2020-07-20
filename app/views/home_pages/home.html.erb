@@ -2,13 +2,18 @@
   <h1>タビナビ</h1>
 
   <h2>
-    おすすめスポットを共有し、旅を取り入れることができます。<br>
-    　メールアドレス：@@@@@@@<br>
-    パスワード：*********<br>
+    おすすめスポットを共有し、旅に取り入れよう！<br>
+    メールアドレス：tabinavi@tabinavi.com<br>
+    パスワード：tabinavi<br>
   </h2>
 
-  <%= link_to "目的地を検索する", '#', class: "btn btn-lg btn-primary" %>
-  <%= link_to "ログインする", login_path, class: "btn btn-lg btn-primary" %>
+  <% if logged_in? %>
+    <%= link_to "目的地を検索する", posts_path, class: "btn btn-lg btn-primary" %>
+    <%= link_to "ログアウト", logout_path, method: :delete, class: "btn btn-lg btn-primary" %>
+  <% else %>
+    <%= link_to "ログインせずに目的地を検索する", posts_path, class: "btn btn-lg btn-primary" %>
+    <%= link_to "ログインする", login_path, class: "btn btn-lg btn-primary" %>
+  <% end %>
 
 </div>
 

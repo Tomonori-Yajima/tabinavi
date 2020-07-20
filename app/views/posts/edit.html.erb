@@ -1,0 +1,39 @@
+<% provide(:title, "編集") %>
+  <h1>編集</h1>
+<div class="d-flex align-items-center">
+  <div class="ml-auto posts_button">
+      <%= link_to '投稿一覧', posts_path, class: 'btn btn-outline-info' %>
+  </div>
+</div>
+<%= form_for @post do |f| %>
+    <div class="form-group">
+        <%= f.label :name, '投稿場所' %>
+        <%= f.text_field :name, class: 'form-control' %>
+        <small id="poster-tip" class="form-text text-muted">
+            投稿場所を入力してください。
+        </small>
+    </div>
+    <div class="form-group">
+        <%= f.label :address, '投稿住所' %>
+        <%= f.text_field :address, class: 'form-control' %>
+        <small id="address-tip" class="form-text text-muted">
+            投稿場所の住所を入力してください。
+        </small>
+    </div>
+    <div class="form-group">
+        <%= f.label :content, '投稿内容' %>
+        <%= f.text_area :content, class: 'form-control', rows:10 %>
+        <small id=content-tip" class="form-text text-muted">
+            投稿内容を入力してください。 
+        </small>
+        
+    <span class="image">
+        <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png" %>
+    </span>
+        
+    </div>
+    <%= f.submit '投稿', class: 'btn btn-info btn-block' %>
+    <small id="submit-tip" class="form-text text-muted">
+        投稿する前に投稿内容を見直してください!
+    </small>
+<% end %>

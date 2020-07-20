@@ -1,0 +1,8 @@
+<% provide(:title, "投稿") %>
+<h1>おすすめ場所を投稿する</h1>
+<div class="d-flex align-items-center">
+  <div class="ml-auto posts_button">
+      <%= link_to 'おすすめ場所一覧へ戻る', posts_path, class: 'btn btn-info' %>
+  </div>
+</div>
+<%= render partial: 'form', locals: { post: @post} %>

@@ -5,6 +5,19 @@
       <h1>
         <%= @user.name %>
       </h1>
+      <% if current_user?(@user) %>
+        <%= link_to "目的地を検索する", posts_path, class: "btn btn-lg btn-primary" %>
+        <%= link_to '投稿する', new_post_path, class: "btn btn-lg btn-primary" %>
+      <% end %>
     </section>
   </aside>
+   <div class="col-md-8">
+    <% if @user.posts.any? %>
+      <h3><%= @user.name %>さんの投稿数 ： <%= @user.posts.count %> つ</h3>
+      <ol class="posts">
+        <%= render @posts %>
+      </ol>
+      <%= will_paginate @posts %>
+    <% end %>
+  </div>
 </div>

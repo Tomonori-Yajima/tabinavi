@@ -190,3 +190,41 @@ input {
     border-bottom: 1px solid $gray-lighter;
   }
 }
+
+
+/* Posts index */
+
+.posts_button {
+    a {
+        margin: 0 8px;
+    }
+}
+
+.posts_table {
+    tr:hover {
+        cursor: pointer;
+    }
+}
+
+
+.posts_button {
+    a {
+        margin: 0 8px;
+    }
+}
+
+.posts_table {
+    tr:hover {
+        cursor: pointer;
+    }
+}
+
+.posts__searchForm {
+  display: inline-block;
+}
+
+
+.posts__select {
+  display: inline-block;
+  width: auto;
+}
