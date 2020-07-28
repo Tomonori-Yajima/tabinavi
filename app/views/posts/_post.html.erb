@@ -57,6 +57,7 @@ function initMap(){
 
   <div class="card-btn">
   <% if current_user?(@user) %>
+    <td><%= link_to '編集', edit_post_path(post), class: "btn btn-info" %></td>
     <td><%= link_to "削除" , post, class: "btn btn-info", method: :delete, data: {confirm: "投稿記事を削除しますか？", cancel: "キャンセル", commit: "削除する", title: "削除の確認"} %></td>
   <% end %>
   </div>
