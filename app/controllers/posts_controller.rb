@@ -1,10 +1,10 @@
 class PostsController < ApplicationController
     before_action :set_target_post, only:[:show, :edit, :update, :destroy]
-    before_action :logged_in_user, only: [:new, :show, :edit, :create, :update, :destroy]
+    before_action :logged_in_user, only: [:new, :edit, :create, :update, :destroy]
   
     def index
       @posts = params[:tag_id].present? ? Tag.find(params[:tag_id]).posts : Post.all
-      @posts = @posts.page(params[:page])
+      @posts = @posts.paginate(page: params[:page], per_page:1)
     end
     
     def new
@@ -12,16 +12,13 @@ class PostsController < ApplicationController
     end
     
     def create
-       post = current_user.posts.build(post_params)
-       post.image.attach(params[:post][:image])
-        if post.save
-          flash[:notice] = "「#{post.address}」の記事が投稿されました!"
-          redirect_to post
+       @post = current_user.posts.build(post_params)
+       @post.image.attach(params[:post][:image])
+        if @post.save
+          flash[:notice] = "「#{@post.address}」の記事が投稿されました!"
+          redirect_to @post
         else
-          redirect_to new_post_path, flash: {
-          post: post,
-          error_messages: post.errors.full_messages
-          }
+          render new_post_path
         end
     end
     
@@ -42,7 +39,13 @@ class PostsController < ApplicationController
         flash[:notice] = "「#{@post.address}」の記事を削除しました!"
         redirect_to posts_path
     end
-
+    
+    
+    def search
+      @posts = Post.search(params[:search])
+      @posts = Post.paginate(page: params[:page], per_page:1)
+    end
+    
     private
     
     def post_params

@@ -1,33 +1,19 @@
-<% provide(:title, "投稿場所一覧") %>
+<% provide(:title, "検索") %>
 <h1>みんなのおすすめ場所一覧</h1>
-<h3>〜タグで絞り込む〜</h3>
-
+<h3>〜ワードで検索する〜</h3>
 
 <%= will_paginate @posts, :previous_label => ' &lt 前へ', :next_label => '次へ &gt' %>
 
 
-  <div class="d-flex align-items-center">
-    <div class="ml-auto posts_button">
-      <%= form_tag posts_path, method: :get, class: 'posts__searchForm' do %>
-            <%= select_tag :tag_id,
-                           options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
-                           {
-                             prompt: 'タグで絞り込み',
-                             class: 'form-control posts__select',
-                             onchange: 'submit(this.form);'
-                             }
-             %>
-     <% end %>
-      <%= link_to 'ワード検索', '/search', class: "btn btn-info" %> 
-      <%= link_to '新規投稿', new_post_path, class: "btn btn-info" %> 
-    </div>
-</div>
-
-
-<% if flash[:notice] %>
-    <div class="alert alert-info"><%= flash[:notice] %></div>
+<%= form_tag('/search',:method => 'get') do %>
+  <p>行きたい場所または住所を入力してください（あいまい検索できます）</p>
+  <%= text_field_tag :search %>
+  <%= submit_tag '検索する', :name => nil %>
 <% end %>
 
+
+<%= link_to 'タグで絞り込む', posts_path, class: "btn btn-info tag_search" %> 
+<%= link_to '新規投稿する', new_post_path, class: "btn btn-info tag_search" %>
 
 <table class="table table-bordered border-primary table-hover table-sm posts_table">
   <thead class="thead-dark">
@@ -57,4 +43,4 @@
 </table>
 
 
-<%= will_paginate @posts, :previous_label => ' &lt 前へ', :next_label => '次へ &gt'%>
+<%= will_paginate @posts, :previous_label => ' &lt 前へ', :next_label => '次へ &gt' %>

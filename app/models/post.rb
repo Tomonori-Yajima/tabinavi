@@ -16,4 +16,12 @@ class Post < ApplicationRecord
     def display_image
         image.variant(resize_to_limit: [200, 200])
     end
+    
+    def self.search(search)
+      if search
+        Post.where(["name LIKE ? OR address LIKE ?", "%#{search}%","%#{search}%"])
+      else
+        Post.all
+      end
+    end
 end

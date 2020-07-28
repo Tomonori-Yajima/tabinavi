@@ -1,3 +1,12 @@
-// Place all the styles related to the HomePages controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.home{
+  background-image: url(00.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-color: #464646;
+}
+
+.home_btn{
+  text-align:center;
+}

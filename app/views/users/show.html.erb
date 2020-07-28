@@ -1,23 +1,25 @@
 <% provide(:title, @user.name) %>
+
+<%= will_paginate @posts, :previous_label => ' &lt 前へ', :next_label => '次へ &gt' %>
+
+
 <div class="row">
-  <aside class="col-md-4">
     <section class="user_info">
       <h1>
         <%= @user.name %>
       </h1>
-      <% if current_user?(@user) %>
-        <%= link_to "目的地を検索する", posts_path, class: "btn btn-lg btn-primary" %>
-        <%= link_to '投稿する', new_post_path, class: "btn btn-lg btn-primary" %>
-      <% end %>
+        <% if current_user?(@user) %>
+          <%= link_to "目的地を検索する", '/search', class: "btn btn-lg btn-info" %>
+          <%= link_to '新規投稿する', new_post_path, class: "btn btn-lg btn-info" %>
+        <% end %>
     </section>
-  </aside>
-   <div class="col-md-8">
     <% if @user.posts.any? %>
       <h3><%= @user.name %>さんの投稿数 ： <%= @user.posts.count %> つ</h3>
       <ol class="posts">
         <%= render @posts %>
       </ol>
-      <%= will_paginate @posts %>
     <% end %>
-  </div>
 </div>
+
+
+<%= will_paginate @posts, :previous_label => ' &lt 前へ', :next_label => '次へ &gt' %>

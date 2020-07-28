@@ -1,5 +1,5 @@
 <div class="card">
-  <div class="card-header bg-info text-white">
+  <div class="card-header bg-info">
       <h3><%= post.name %></h3>
       <h4><%= post.address %></h4>
       <% post.tags.each do |tag| %>
@@ -10,17 +10,59 @@
   </div>
   <div class="card-body">
       <p class="card-text"><%= simple_format(post.content) %></p>
-      <span><%= image_tag post.display_image if post.image.attached? %></span>
   </div>
-  <% if current_user?(@user) %>
-    <td><%= link_to "詳細", post, id: "detail-" + post.id.to_s, class: "btn btn-primary" %></td>
-    <td><%= link_to "削除" , post, class: "btn btn-primary", method: :delete, data: {confirm: "投稿記事を削除しますか？", cancel: "キャンセル", commit: "削除する", title: "削除の確認"} %></td>
-  <% end %>
-  <div class="card-footer">
-      <p class="text-right font-weight-bold mr-10"><%= post.user_id %></p>
+  <div class="card-img">
+    <span><%= image_tag post.display_image if post.image.attached? %></span>
   </div>
+
+
+<div class="card-map">
+<input id="address" type="textbox" value=<%= post.address %>>
+
+<div id='map'></div>
+
+<script>
+let map
+let geocoder
+function initMap(){
   
+  geocoder = new google.maps.Geocoder()
+
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 0, lng: 0},
+    zoom: 16,
+  });
+
+  marker = new google.maps.Marker({
+    position:  {lat: 0, lng: 0},
+    map: map
+  });
+  
+  let Address = document.getElementById('address').value;
+
+  geocoder.geocode( { 'address': Address}, function(results, status) {
+    if (status == 'OK') {
+      map.setCenter(results[0].geometry.location);
+      var marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location
+      });
+    } 
+  });   
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCr8R_sdiK8g40KAXYRE0Bx125aHIujsQY&callback=initMap" async defer></script>
 </div>
+
+
+  <div class="card-btn">
+  <% if current_user?(@user) %>
+    <td><%= link_to "削除" , post, class: "btn btn-info", method: :delete, data: {confirm: "投稿記事を削除しますか？", cancel: "キャンセル", commit: "削除する", title: "削除の確認"} %></td>
+  <% end %>
+  </div>
+  <div class="card-footer">
+      <p class="text-right"><%= post.user_id %></p>
+  </div>
 
 
 
@@ -33,3 +75,6 @@
     }
   });
 </script>
+
+
+</div>
