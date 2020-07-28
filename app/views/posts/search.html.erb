@@ -2,7 +2,7 @@
 <h1>みんなのおすすめ場所一覧</h1>
 <h3>〜ワードで検索する〜</h3>
 
-<%= will_paginate @posts, :previous_label => ' &lt 前へ', :next_label => '次へ &gt' %>
+<%= will_paginate @post, :previous_label => ' &lt 前へ', :next_label => '次へ &gt' %>
 
 
 <%= form_tag('/search',:method => 'get') do %>
@@ -43,4 +43,4 @@
 </table>
 
 
-<%= will_paginate @posts, :previous_label => ' &lt 前へ', :next_label => '次へ &gt' %>
+<%= will_paginate @post, :previous_label => ' &lt 前へ', :next_label => '次へ &gt' %>

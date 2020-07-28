@@ -43,7 +43,7 @@ class PostsController < ApplicationController
     
     def search
       @posts = Post.search(params[:search])
-      @posts = Post.paginate(page: params[:page], per_page:5)
+      @post = Post.paginate(page: params[:page], per_page:5)
     end
     
     private
