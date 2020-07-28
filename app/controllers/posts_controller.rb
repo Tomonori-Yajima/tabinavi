@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   
     def index
       @posts = params[:tag_id].present? ? Tag.find(params[:tag_id]).posts : Post.all
-      @posts = @posts.paginate(page: params[:page], per_page:1)
+      @posts = @posts.paginate(page: params[:page], per_page:5)
     end
     
     def new
@@ -43,7 +43,7 @@ class PostsController < ApplicationController
     
     def search
       @posts = Post.search(params[:search])
-      @posts = Post.paginate(page: params[:page], per_page:1)
+      @posts = Post.paginate(page: params[:page], per_page:5)
     end
     
     private
